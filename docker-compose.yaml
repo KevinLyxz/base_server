@@ -1,53 +1,53 @@
 version: '3'
-#networks:
-#    ds-wordpress-6.1.1-net:
-#        driver: bridge
+networks:
+    ds-wordpress-6.1.1-net:
+        driver: bridge
 services:
-#  mysql:
-#    image: mysql:5.7
-#    container_name: ds-wordpress-6.1.1-mysql
-#    tty: true
-#    ports:
-#      - "4208:3306"
-#    volumes:
-#      - "./var/libclea/mysql/:/var/lib/mysql"
-#    environment:
-#      MYSQL_ROOT_PASSWORD: materialesyaperu
-#      MYSQL_DATABASE: wordpress
-#      MYSQL_USER: materialesya
-#      MYSQL_PASSWORD: materialesya2024
-#    networks:
-#      - ds-wordpress-6.1.1-net
-#
-#  server:
-#    image: wordpress:latest
-#    container_name: ds-wordpress-6.1.1
-#    ports:
-#      - "8080:80"
-#    volumes:
-#      - "./var/www/html/:/var/www/html"
-#    environment:
-#      WORDPRESS_DB_USER: materialesya
-#      WORDPRESS_DB_PASSWORD: materialesya2024
-#      WORDPRESS_DB_NAME: wordpress
-#      WORDPRESS_DB_HOST: ds-wordpress-6.1.1-mysql
-#    depends_on:
-#      - mysql
-#    networks:
-#      - ds-wordpress-6.1.1-net
+  mysql:
+    image: mysql:5.7
+    container_name: ds-wordpress-6.1.1-mysql
+    tty: true
+    ports:
+      - "4208:3306"
+    volumes:
+      - "./var/libclea/mysql/:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: materialesyaperu
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: materialesya
+      MYSQL_PASSWORD: materialesya2024
+    networks:
+      - ds-wordpress-6.1.1-net
 
-#  phpmyadmin:
-#    image: phpmyadmin/phpmyadmin
-#    container_name: ds-phpmyadmin
-#    ports:
-#      - "4283:80"
-#    environment:
-#      PMA_HOST: ds-wordpress-6.1.1-mysql
-#      MYSQL_ROOT_PASSWORD: materialesyaperu
-#    depends_on:
-#      - mysql
-#    networks:
-#      - ds-wordpress-6.1.1-net
+  server:
+    image: wordpress:latest
+    container_name: ds-wordpress-6.1.1
+    ports:
+      - "8080:80"
+    volumes:
+      - "./var/www/html/:/var/www/html"
+    environment:
+      WORDPRESS_DB_USER: materialesya
+      WORDPRESS_DB_PASSWORD: materialesya2024
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_DB_HOST: ds-wordpress-6.1.1-mysql
+    depends_on:
+      - mysql
+    networks:
+      - ds-wordpress-6.1.1-net
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: ds-phpmyadmin
+    ports:
+      - "4283:80"
+    environment:
+      PMA_HOST: ds-wordpress-6.1.1-mysql
+      MYSQL_ROOT_PASSWORD: materialesyaperu
+    depends_on:
+      - mysql
+    networks:
+      - ds-wordpress-6.1.1-net
   
   base: &base
     image: chatwoot/chatwoot:latest
